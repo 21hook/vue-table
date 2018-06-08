@@ -2,29 +2,29 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <vue-table
+      ref="table"
+      :column-name-field="{ prop: ['id', 'name'], name: ['供应商ID', '供应商名称']}"
+      :pages="{src: pageSrc, multiple: true}"
+      selection
+      :row-class-name="['row-1', 'row-2']"
+      index
+      stripe>
+    </vue-table>
   </div>
 </template>
 
 <script>
+import VueTable from '@/components/Table'
+import 'element-ui/lib/theme-chalk/index.css' // element-ui component styles
+
 export default {
   name: 'app',
+  components: {VueTable},
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      pageSrc: 'http://daily.qundian.elephtribe.com/api/procurement/wxhc/supplier/query'
     }
   }
 }
